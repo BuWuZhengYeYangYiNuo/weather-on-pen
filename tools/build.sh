@@ -54,6 +54,13 @@ function create_directories() {
         return 1
     fi
     
+    # 仓库内 vendored 的 QuickJS 编译器二进制在 git  checkout 后可能丢失可执行位，
+    # 这里统一补回，避免 Linux/macOS 上 spawn 报 EACCES。
+    if [ -d aiot-vue-cli/cli-libs/aiot-qjsc-tool/assets/bin ]; then
+        find aiot-vue-cli/cli-libs/aiot-qjsc-tool/assets/bin -type f -exec chmod +x {} + || true
+        log_info "Ensured qjsc binaries are executable"
+    fi
+    
     log_verbose "Directories created successfully"
 }
 
