@@ -78,7 +78,7 @@ wget -q <VERSIONINFO_URL>
 tar -xf <VERSIONINFO_FILENAME> -C jsapi
 
 # 4. Run the build
-./tools/build.sh -a
+bash ./tools/build.sh -a
 
 # The .amr file will be in dist/
 ```
